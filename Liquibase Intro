@@ -1,0 +1,47 @@
+For DB creation/updation using application 
+Create DB log in xml , json , yaml or sql format 
+Will have content like create table , columns with constraints inside change set 
+Change set is converted to sql statements and executed each time with the help of the build tool like maven 
+ liquibase only manage schema changes of your database, e.g. add extra index or rename a column, the data in the tables are not managed!
+changeset is identified by 3 elements, id + author + change log filename(with path).  When run liquibase first time, it will create 2 extra tables in your database, databasechangelog and databasechangeloglock. 
+
+o	change pom file, add liquibase-maven-plugin
+https://medium.com/@harittweets/evolving-your-database-using-spring-boot-and-liquibase-844fcd7931da
+http://shengwangi.blogspot.com/2016/04/liquibase-helloworld-example.html
+http://www.liquibase.org/documentation/preconditions.html --> preconditions for change set execution
+for disabling liquibase , 
+1	spring.liquibase.enabled=false
+
+In application.properties
+#liquibase
+spring.liquibase.change-log=classpath:db/liquibase-changelog.xml
+Add to pom.xml 
+<dependency>
+    <groupId>org.liquibase</groupId>
+     <artifactId>liquibase-core</artifactId>
+      <version>3.4.1</version>
+</dependency>
+
+Create an xml/json/yaml file for executing the query and add in src/main/resources each file’s changeset is identified by author and id .
+
+In Changeset :
+<createTable tableName="users">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="username" type="VARCHAR(100)">
+        <constraints nullable="false" unique="true" />
+      </column>
+    </createTable>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <include file="com/example/news/news.changelog.xml"/>
+    <include file="com/example/directory/directory.changelog.xml"/>
+</databaseChangeLog>
+
+
+
