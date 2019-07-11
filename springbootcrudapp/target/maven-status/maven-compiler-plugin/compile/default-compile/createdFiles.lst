@@ -1,0 +1,11 @@
+com\renault\mycrudapp\springbootcrudapp\model\ImpactSheet.class
+com\renault\mycrudapp\springbootcrudapp\model\users_data.class
+com\renault\mycrudapp\springbootcrudapp\repository\impactSheetRepository.class
+com\renault\mycrudapp\springbootcrudapp\rest\impactSheetCtrllr.class
+com\renault\mycrudapp\springbootcrudapp\rest\serviceController.class
+com\renault\mycrudapp\springbootcrudapp\service\impactSheetService.class
+com\renault\mycrudapp\springbootcrudapp\dto\impactSheetDTO.class
+com\renault\mycrudapp\springbootcrudapp\App.class
+com\renault\mycrudapp\springbootcrudapp\dto\userDto.class
+com\renault\mycrudapp\springbootcrudapp\repository\userRepository.class
+com\renault\mycrudapp\springbootcrudapp\service\userService.class
